@@ -30,6 +30,9 @@ import javax.inject.Named;
 
 import org.pdfsam.context.UserContext;
 import org.pdfsam.i18n.DefaultI18nContext;
+import org.pdfsam.injector.Auto;
+import org.pdfsam.injector.Components;
+import org.pdfsam.injector.Provides;
 import org.pdfsam.module.ModuleCategory;
 import org.pdfsam.module.ModuleDescriptor;
 import org.pdfsam.module.ModuleInputOutputType;
@@ -43,11 +46,8 @@ import org.pdfsam.ui.module.OpenButton;
 import org.pdfsam.ui.module.RunButton;
 import org.pdfsam.ui.prefix.PrefixPane;
 import org.pdfsam.ui.support.Views;
-import org.sejda.eventstudio.annotation.EventListener;
-import org.sejda.eventstudio.annotation.EventStation;
-import org.sejda.injector.Auto;
-import org.sejda.injector.Components;
-import org.sejda.injector.Provides;
+import org.pdfsam.eventstudio.annotation.EventListener;
+import org.pdfsam.eventstudio.annotation.EventStation;
 import org.sejda.model.prefix.Prefix;
 
 import javafx.geometry.Pos;
@@ -72,21 +72,22 @@ public class ExtractModule extends BaseTaskExecutionModule {
     private ExtractOptionsPane extractOptions = new ExtractOptionsPane();
     private BrowsableOutputDirectoryField destinationDirectoryField;
     private PdfDestinationPane destinationPane;
-    private PrefixPane prefix = new PrefixPane();
+    private PrefixPane prefix;
 
     private ModuleDescriptor descriptor = builder().category(ModuleCategory.SPLIT)
             .inputTypes(ModuleInputOutputType.MULTIPLE_PDF, ModuleInputOutputType.SINGLE_PDF)
             .name(DefaultI18nContext.getInstance().i18n("Extract"))
             .description(DefaultI18nContext.getInstance().i18n("Extract pages from PDF documents."))
-            .priority(ModulePriority.DEFAULT.getPriority()).supportURL("https://pdfsam.org/pdf-extract-pages/")
-            .build();
+            .priority(ModulePriority.DEFAULT.getPriority()).supportURL("https://pdfsam.org/pdf-extract-pages/").build();
 
     @Inject
     public ExtractModule(@Named(MODULE_ID + "field") BrowsableOutputDirectoryField destinationDirectoryField,
-            @Named(MODULE_ID + "pane") PdfDestinationPane destinationPane, @Named(MODULE_ID + "footer") Footer footer) {
+            @Named(MODULE_ID + "pane") PdfDestinationPane destinationPane, @Named(MODULE_ID + "footer") Footer footer,
+            @Named(MODULE_ID + "prefix") PrefixPane prefix) {
         super(footer);
         this.destinationDirectoryField = destinationDirectoryField;
         this.destinationPane = destinationPane;
+        this.prefix = prefix;
         initModuleSettingsPanel(settingPanel());
     }
 
@@ -190,6 +191,12 @@ public class ExtractModule extends BaseTaskExecutionModule {
         @Named(MODULE_ID + "openButton")
         public OpenButton openButton() {
             return new OpenButton(MODULE_ID, ModuleInputOutputType.MULTIPLE_PDF);
+        }
+
+        @Provides
+        @Named(MODULE_ID + "prefix")
+        public PrefixPane prefixPane(UserContext userContext) {
+            return new PrefixPane(MODULE_ID, userContext);
         }
     }
 

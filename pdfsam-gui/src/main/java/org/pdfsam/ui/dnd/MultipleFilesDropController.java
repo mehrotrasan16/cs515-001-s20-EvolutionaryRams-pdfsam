@@ -19,7 +19,7 @@
 package org.pdfsam.ui.dnd;
 
 import static java.util.Arrays.stream;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +32,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 import org.pdfsam.i18n.DefaultI18nContext;
+import org.pdfsam.injector.Auto;
 import org.pdfsam.pdf.MultipleFilesDroppedEvent;
 import org.pdfsam.pdf.PdfDocumentDescriptor;
 import org.pdfsam.pdf.PdfFilesListLoadRequest;
@@ -40,8 +41,7 @@ import org.pdfsam.support.io.FileType;
 import org.pdfsam.ui.dialog.AddSubdirectoriesConfirmationDialog;
 import org.pdfsam.ui.notification.AddNotificationRequestEvent;
 import org.pdfsam.ui.notification.NotificationType;
-import org.sejda.eventstudio.annotation.EventListener;
-import org.sejda.injector.Auto;
+import org.pdfsam.eventstudio.annotation.EventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

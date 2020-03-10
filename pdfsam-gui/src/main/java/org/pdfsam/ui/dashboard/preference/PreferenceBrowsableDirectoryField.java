@@ -18,9 +18,9 @@
  */
 package org.pdfsam.ui.dashboard.preference;
 
-import static org.pdfsam.support.RequireUtils.requireNotNull;
 import static org.pdfsam.support.validation.Validators.existingDirectory;
 import static org.pdfsam.support.validation.Validators.validEmpty;
+import static org.sejda.commons.util.RequireUtils.requireNotNullArg;
 
 import org.pdfsam.context.StringUserPreference;
 import org.pdfsam.context.UserContext;
@@ -36,8 +36,8 @@ class PreferenceBrowsableDirectoryField extends BrowsableDirectoryField {
 
     PreferenceBrowsableDirectoryField(StringUserPreference preference, UserContext userContext) {
         getTextField().setValidator(validEmpty(existingDirectory()));
-        requireNotNull(preference, "Preference cannot be null");
-        requireNotNull(userContext, "UserContext cannot be null");
+        requireNotNullArg(preference, "Preference cannot be null");
+        requireNotNullArg(userContext, "UserContext cannot be null");
         getTextField().validProperty()
                 .addListener(new PreferenceSetterOnValidState(preference, getTextField(), userContext));
     }

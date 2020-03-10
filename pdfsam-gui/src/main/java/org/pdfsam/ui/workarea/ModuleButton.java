@@ -18,9 +18,9 @@
  */
 package org.pdfsam.ui.workarea;
 
-import static org.pdfsam.support.RequireUtils.requireNotNull;
 import static org.pdfsam.ui.commons.SetActiveModuleRequest.activeteModule;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.sejda.commons.util.RequireUtils.requireNotNullArg;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import org.pdfsam.module.Module;
 import org.pdfsam.ui.quickbar.BaseQuickbarButton;
@@ -38,7 +38,7 @@ class ModuleButton extends BaseQuickbarButton {
     private Module module;
 
     ModuleButton(Module module) {
-        requireNotNull(module, "Module cannot be null");
+        requireNotNullArg(module, "Module cannot be null");
         this.module = module;
         setGraphic(this.module.graphic());
         setText(this.module.descriptor().getName());

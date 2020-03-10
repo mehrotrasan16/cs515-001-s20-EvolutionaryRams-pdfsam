@@ -23,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import java.util.Locale;
 
@@ -34,13 +34,13 @@ import org.junit.Test;
 import org.pdfsam.context.UserContext;
 import org.pdfsam.i18n.DefaultI18nContext;
 import org.pdfsam.i18n.SetLocaleEvent;
+import org.pdfsam.injector.Injector;
+import org.pdfsam.injector.Provides;
 import org.pdfsam.module.Module;
 import org.pdfsam.support.KeyStringValueItem;
 import org.pdfsam.test.ClearEventStudioRule;
 import org.pdfsam.test.HighPriorityTestModule;
 import org.pdfsam.test.InitializeAndApplyJavaFxThreadRule;
-import org.sejda.injector.Injector;
-import org.sejda.injector.Provides;
 
 /**
  * @author Andrea Vacondio

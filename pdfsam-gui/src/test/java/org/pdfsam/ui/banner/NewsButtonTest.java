@@ -20,17 +20,17 @@ package org.pdfsam.ui.banner;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import org.junit.Test;
 import org.pdfsam.news.HideNewsPanelRequest;
 import org.pdfsam.news.ShowNewsPanelRequest;
-import org.sejda.eventstudio.Listener;
+import org.pdfsam.eventstudio.Listener;
 import org.testfx.framework.junit.ApplicationTest;
 
 import javafx.scene.Scene;

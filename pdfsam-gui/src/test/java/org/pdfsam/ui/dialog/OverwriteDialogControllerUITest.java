@@ -20,7 +20,7 @@ package org.pdfsam.ui.dialog;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,11 +33,11 @@ import org.junit.rules.TemporaryFolder;
 import org.pdfsam.configuration.StylesConfig;
 import org.pdfsam.i18n.DefaultI18nContext;
 import org.pdfsam.i18n.SetLocaleEvent;
+import org.pdfsam.injector.Components;
+import org.pdfsam.injector.Injector;
+import org.pdfsam.injector.Provides;
 import org.pdfsam.module.TaskExecutionRequestEvent;
 import org.pdfsam.test.ClearEventStudioRule;
-import org.sejda.injector.Components;
-import org.sejda.injector.Injector;
-import org.sejda.injector.Provides;
 import org.sejda.model.output.ExistingOutputPolicy;
 import org.sejda.model.output.FileOrDirectoryTaskOutput;
 import org.sejda.model.output.FileTaskOutput;

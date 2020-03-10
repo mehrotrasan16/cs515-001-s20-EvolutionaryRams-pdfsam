@@ -55,6 +55,10 @@ public enum SizeUnit {
     public String symbol() {
         return symbol;
     }
+    
+    public String testSymbol() {
+        return symbol;
+    }
 
     /**
      * Convert the raw integer to the corresponding bytes for the unit
