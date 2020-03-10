@@ -18,7 +18,7 @@
  */
 package org.pdfsam.ui.dialog;
 
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,9 +26,9 @@ import java.nio.file.Files;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import org.pdfsam.injector.Auto;
 import org.pdfsam.ui.commons.NonExistingOutputDirectoryEvent;
-import org.sejda.eventstudio.annotation.EventListener;
-import org.sejda.injector.Auto;
+import org.pdfsam.eventstudio.annotation.EventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

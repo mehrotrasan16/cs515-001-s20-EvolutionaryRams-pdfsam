@@ -19,7 +19,7 @@
 package org.pdfsam.ui.notification;
 
 import static org.pdfsam.ui.commons.UrlButton.styledUrlButton;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import java.nio.file.AccessDeniedException;
 import java.security.SecureRandom;
@@ -31,12 +31,12 @@ import org.pdfsam.ConfigurableProperty;
 import org.pdfsam.Pdfsam;
 import org.pdfsam.context.UserContext;
 import org.pdfsam.i18n.DefaultI18nContext;
+import org.pdfsam.injector.Auto;
 import org.pdfsam.module.UsageService;
 import org.pdfsam.news.NewImportantNewsEvent;
 import org.pdfsam.update.NoUpdateAvailable;
 import org.pdfsam.update.UpdateAvailableEvent;
-import org.sejda.eventstudio.annotation.EventListener;
-import org.sejda.injector.Auto;
+import org.pdfsam.eventstudio.annotation.EventListener;
 import org.sejda.model.exception.InvalidTaskParametersException;
 import org.sejda.model.notification.event.TaskExecutionCompletedEvent;
 import org.sejda.model.notification.event.TaskExecutionFailedEvent;

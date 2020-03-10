@@ -21,7 +21,7 @@ package org.pdfsam.update;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.pdfsam.ConfigurableProperty.VERSION;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -29,8 +29,8 @@ import javax.inject.Inject;
 
 import org.pdfsam.Pdfsam;
 import org.pdfsam.i18n.DefaultI18nContext;
-import org.sejda.eventstudio.annotation.EventListener;
-import org.sejda.injector.Auto;
+import org.pdfsam.injector.Auto;
+import org.pdfsam.eventstudio.annotation.EventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

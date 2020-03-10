@@ -21,8 +21,9 @@ package org.pdfsam.ui.dashboard.preference;
 import static org.pdfsam.support.KeyStringValueItem.keyEmptyValue;
 import static org.pdfsam.support.KeyStringValueItem.keyValue;
 import static org.pdfsam.ui.help.HelpUtils.helpIcon;
-import static org.sejda.eventstudio.StaticStudio.eventStudio;
+import static org.pdfsam.eventstudio.StaticStudio.eventStudio;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Named;
@@ -32,6 +33,7 @@ import org.pdfsam.context.IntUserPreference;
 import org.pdfsam.context.StringUserPreference;
 import org.pdfsam.context.UserContext;
 import org.pdfsam.i18n.DefaultI18nContext;
+import org.pdfsam.injector.Provides;
 import org.pdfsam.module.Module;
 import org.pdfsam.module.ModuleKeyValueItem;
 import org.pdfsam.support.KeyStringValueItem;
@@ -42,7 +44,6 @@ import org.pdfsam.ui.io.RememberingLatestFileChooserWrapper.OpenType;
 import org.pdfsam.ui.log.MaxLogRowsChangedEvent;
 import org.pdfsam.ui.support.FXValidationSupport.ValidationState;
 import org.pdfsam.ui.support.Style;
-import org.sejda.injector.Provides;
 
 /**
  * Configuration for the PDFsam preferences components
@@ -66,7 +67,8 @@ public class PreferenceConfig {
                 StringUserPreference.STARTUP_MODULE, userContext);
         startupModuleCombo.setId("startupModuleCombo");
         startupModuleCombo.getItems().add(keyValue("", DefaultI18nContext.getInstance().i18n("Dashboard")));
-        modules.stream().map(ModuleKeyValueItem::new).forEach(startupModuleCombo.getItems()::add);
+        modules.stream().map(ModuleKeyValueItem::new).sorted(Comparator.comparing(ModuleKeyValueItem::getValue))
+                .forEach(startupModuleCombo.getItems()::add);
         startupModuleCombo.setValue(keyEmptyValue(userContext.getStartupModule()));
         return startupModuleCombo;
     }

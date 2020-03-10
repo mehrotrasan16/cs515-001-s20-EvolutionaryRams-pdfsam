@@ -22,8 +22,8 @@
 	</appender>
 
 	<logger name="org.sejda" level="DEBUG" />
-	<logger name="org.sejda.eventstudio" level="ERROR" />
-	<logger name="org.sejda.injector" level="INFO" />	
+	<logger name="org.pdfsam.eventstudio" level="ERROR" />
+	<logger name="org.pdfsam.injector" level="INFO" />	
 	<logger name="org.pdfsam" level="DEBUG" />
 	<logger name="org.hibernate" level="WARN" />
 
