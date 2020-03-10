@@ -70,7 +70,7 @@ class MergeParametersBuilder extends AbstractPdfOutputParametersBuilder<MergePar
     	}    	
     	for(int i = 0; i < pglist.size();i++) {
     		PdfMergeInput tempInput = new PdfMergeInput(input.getSource());
-    		tempInput.addPageRange(arrayOfPageRangestoPasstoindividual.get(i));
+    		tempInput.addPageRange(pglist.get(i));
     		this.inputs.add(tempInput);
     	}
     	/*
