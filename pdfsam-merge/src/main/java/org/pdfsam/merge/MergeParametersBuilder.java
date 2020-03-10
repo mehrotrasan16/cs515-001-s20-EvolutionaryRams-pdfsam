@@ -57,7 +57,7 @@ class MergeParametersBuilder extends AbstractPdfOutputParametersBuilder<MergePar
     void addInput(PdfMergeInput input) {
     	
     	/*
-    	 * Sanket M: 10 March 2020 - PDFSam merge change request - #ps2
+    	 * Sanket M, Nada A.: 10 March 2020 - PDFSam merge change request - #ps2
     	 */
     	Set<PageRange> set = input.getPageSelection();
     	ArrayList<PageRange> pglist = new ArrayList<PageRange>(set);
@@ -74,7 +74,7 @@ class MergeParametersBuilder extends AbstractPdfOutputParametersBuilder<MergePar
     		this.inputs.add(tempInput);
     	}
     	/*
-    	 * END Sanket M: 10 March 2020 - PDFSam merge change request - #ps2
+    	 * END Sanket M, Nada A. : 10 March 2020 - PDFSam merge change request - #ps2
     	 */
     	//OLD CODE: this.inputs.add(input);
         

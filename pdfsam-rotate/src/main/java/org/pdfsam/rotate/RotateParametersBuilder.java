@@ -59,7 +59,7 @@ class RotateParametersBuilder extends AbstractPdfOutputParametersBuilder<BulkRot
             this.inputs.add(new PdfRotationInput(source, rotation, predefinedRotationType));
         } else {
         	/*
-        	 * START: Sanket M 8th March 2020 - PDFSam merge change request - #ps3
+        	 * START: Sanket M, Nada A. 8th March 2020 - PDFSam merge change request - #ps3
         	 * Create page Range array
         	 */
         	// OLD CODE: this.inputs.add(new PdfRotationInput(source, rotation, pageSelection.stream().toArray(PageRange[]::new)));
