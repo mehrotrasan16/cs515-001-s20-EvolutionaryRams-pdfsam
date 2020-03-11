@@ -60,7 +60,6 @@ class RotateParametersBuilder extends AbstractPdfOutputParametersBuilder<BulkRot
         } else {
         	/*
         	 * START: Sanket M, Nada A. 8th March 2020 - PDFSam merge change request - #ps3
-        	 * Create page Range array
         	 */
         	// OLD CODE: this.inputs.add(new PdfRotationInput(source, rotation, pageSelection.stream().toArray(PageRange[]::new)));
         	ArrayList<PageRange> tempPageArray1 = new ArrayList<PageRange>();
@@ -98,7 +97,7 @@ class RotateParametersBuilder extends AbstractPdfOutputParametersBuilder<BulkRot
         		this.inputs.add(new PdfRotationInput(source, rotation, pageSelection.stream().toArray(PageRange[]::new)));
         	}
         	/*
-        	 * END 
+        	 * END Sanket M, Nada A. 8th March 2020 - PDFSam merge change request - #ps3
         	 */
         }
     }
