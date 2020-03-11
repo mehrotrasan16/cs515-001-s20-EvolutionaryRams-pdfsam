@@ -60,17 +60,11 @@ class MergeParametersBuilder extends AbstractPdfOutputParametersBuilder<MergePar
     	 * Sanket M, Nada A.: 10 March 2020 - PDFSam merge change request - #ps2
     	 */
     	Set<PageRange> set = input.getPageSelection();
-    	ArrayList<PageRange> pglist = new ArrayList<PageRange>(set);
+    	ArrayList<PageRange> pageList = new ArrayList<PageRange>(set);
     	
-       	//for each range create a new input and pass it to this.inputs.add
-    	ArrayList<PageRange> arrayOfPageRangestoPasstoindividual = new ArrayList<PageRange>();
-    	
-    	for(int i = 0; i < pglist.size();i++ ) {    		
-    		arrayOfPageRangestoPasstoindividual.add(pglist.get(i));
-    	}    	
-    	for(int i = 0; i < pglist.size();i++) {
+    	for(int i = 0; i < pageList.size();i++) {
     		PdfMergeInput tempInput = new PdfMergeInput(input.getSource());
-    		tempInput.addPageRange(pglist.get(i));
+    		tempInput.addPageRange(pageList.get(i));
     		this.inputs.add(tempInput);
     	}
     	/*
