@@ -18,6 +18,7 @@
  */
 package org.pdfsam.merge;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.pdfsam.support.params.AbstractPdfOutputParametersBuilder;
@@ -28,6 +29,7 @@ import org.sejda.model.outline.OutlinePolicy;
 import org.sejda.model.output.FileTaskOutput;
 import org.sejda.model.parameter.MergeParameters;
 import org.sejda.model.pdf.form.AcroFormPolicy;
+import org.sejda.model.pdf.page.PageRange;
 import org.sejda.model.toc.ToCPolicy;
 
 /**
@@ -49,7 +51,21 @@ class MergeParametersBuilder extends AbstractPdfOutputParametersBuilder<MergePar
     private FileTaskOutput output;
 
     void addInput(PdfMergeInput input) {
-        this.inputs.add(input);
+    	/*
+    	 * Sanket M, Nada A.: 10 March 2020 - PDFSam merge change request - #ps2
+    	 */
+    	Set<PageRange> set = input.getPageSelection();
+    	ArrayList<PageRange> pageList = new ArrayList<PageRange>(set);
+    	
+    	for(int i = 0; i < pageList.size();i++) {
+    		PdfMergeInput tempInput = new PdfMergeInput(input.getSource());
+    		tempInput.addPageRange(pageList.get(i));
+    		this.inputs.add(tempInput);
+    	}
+    	/*
+    	 * END Sanket M, Nada A. : 10 March 2020 - PDFSam merge change request - #ps2
+    	 */
+    	//OLD CODE: this.inputs.add(input);
     }
 
     boolean hasInput() {
