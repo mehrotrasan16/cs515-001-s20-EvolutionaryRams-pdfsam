@@ -43,7 +43,8 @@ import org.sejda.model.rotation.Rotation;
  */
 class RotateParametersBuilder extends AbstractPdfOutputParametersBuilder<BulkRotateParameters>
         implements MultipleOutputTaskParametersBuilder<BulkRotateParameters> {
-
+	
+	private final int TWO = 2;	//Sanket M, Nada A 8th April 2020. Added Symbolic constant to remove Magic Number Smell
     private SingleOrMultipleTaskOutput output;
     private String prefix;
     private Set<PdfRotationInput> inputs = new NullSafeSet<>();
@@ -54,50 +55,59 @@ class RotateParametersBuilder extends AbstractPdfOutputParametersBuilder<BulkRot
         if (isNull(pageSelection) || pageSelection.isEmpty()) {
             this.inputs.add(new PdfRotationInput(source, rotation, predefinedRotationType));
         } else {
-            /*
-        	 * START: Sanket M 8th March 2020 - PDFSam merge change request - #ps3
-        	 * Create page Range array
+        	/*
+        	 * START: Sanket M, Nada A. 8th April 2020 - PDFSam merge change request refactoring - #ps3
         	 */
         	// OLD CODE: this.inputs.add(new PdfRotationInput(source, rotation, pageSelection.stream().toArray(PageRange[]::new)));
-        	ArrayList<PageRange> tempPageArray1 = new ArrayList<PageRange>();
-        	if(predefinedRotationType == predefinedRotationType.EVEN_PAGES) {
-        		pageSelection.forEach(new Consumer<PageRange>() {
-					
-					@Override
-					public void accept(PageRange t) {
-						for(int i = t.getStart(); i <= t.getEnd(); i++) {
-							if(i%2 == 0) {
-								tempPageArray1.add(new PageRange(i,i));
-							}
-						}
-					}
-        		});
-        		
+        	ArrayList<PageRange> tempPageArray1 = checkOddEvenRotation(pageSelection);
+			if(predefinedRotationType == predefinedRotationType.EVEN_PAGES) {
         		this.inputs.add(new PdfRotationInput(source, rotation, tempPageArray1.toArray(PageRange[]::new)));
         	}
         	if(predefinedRotationType == predefinedRotationType.ODD_PAGES) {
-        		pageSelection.forEach(new Consumer<PageRange>() {
-					
-					@Override
-					public void accept(PageRange t) {
-						for(int i = t.getStart(); i <= t.getEnd(); i++) {
-							if(i%2 != 0) {
-								tempPageArray1.add(new PageRange(i,i));
-							}
-						}
-					}
-        		});
-        		
         		this.inputs.add(new PdfRotationInput(source, rotation, tempPageArray1.toArray(PageRange[]::new)));
         	}
         	if(predefinedRotationType == predefinedRotationType.ALL_PAGES) {
         		this.inputs.add(new PdfRotationInput(source, rotation, pageSelection.stream().toArray(PageRange[]::new)));
         	}
         	/*
-        	 * END Sanket M 8th March 2020 - PDFSam merge change request - #ps3
+        	 * END Sanket M, Nada A. 8th April 2020 - PDFSam merge change request refactoring- #ps3
         	 */
         }
     }
+    /*
+	 * START: Sanket M, Nada A. 8th April 2020 - PDFSam merge change request refactoring - #ps3
+	 */
+	private ArrayList<PageRange> checkOddEvenRotation(Set<PageRange> pageSelection) {
+		ArrayList<PageRange> tempPageArray1 = new ArrayList<PageRange>();
+		if (predefinedRotationType == predefinedRotationType.EVEN_PAGES) {
+			pageSelection.forEach(new Consumer<PageRange>() {
+				@Override
+				public void accept(PageRange t) {
+					for (int i = t.getStart(); i <= t.getEnd(); i++) {
+						if (i % TWO == 0) {
+							tempPageArray1.add(new PageRange(i, i));
+						}
+					}
+				}
+			});
+		}
+		if (predefinedRotationType == predefinedRotationType.ODD_PAGES) {
+			pageSelection.forEach(new Consumer<PageRange>() {
+				@Override
+				public void accept(PageRange t) {
+					for (int i = t.getStart(); i <= t.getEnd(); i++) {
+						if (i % TWO != 0) {
+							tempPageArray1.add(new PageRange(i, i));
+						}
+					}
+				}
+			});
+		}
+		return tempPageArray1;
+	}
+	/*
+	 * END: Sanket M, Nada A. 8th April 2020 - PDFSam merge change request refactoring - #ps3
+	 */
 
     boolean hasInput() {
         return !inputs.isEmpty();
