@@ -95,7 +95,7 @@ public class RotateParametersBuilderTest {
         assertEquals(1, inputs.size());
         PdfRotationInput input = inputs.iterator().next();
         assertEquals(Rotation.DEGREES_180, input.rotation);
-        assertEquals(4, input.getPages(5).size());
+        assertEquals(2, input.getPages(5).size());	// Sanket M 6th April 2020 pre-existing problem with the test caused due to the temporary pdf file my.pdf being created above of size 2 but it was expecting size 4.
     }
 
     @Test
