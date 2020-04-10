@@ -62,10 +62,6 @@ public class RotateSelectionPaneTest {
     @Rule
     public InitializeAndApplyJavaFxThreadRule javaFxThread = new InitializeAndApplyJavaFxThreadRule();
 
-    private RotateParametersBuilder builder;
-    private Consumer<String> onError;
-    private RotateSelectionPane victim;
-
     @Before
     public void setUp() {
         rotateSelectionPaneTestCases.setUp();
